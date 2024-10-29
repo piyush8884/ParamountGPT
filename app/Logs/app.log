@@ -1,0 +1,149 @@
+INFO:chromadb.telemetry.posthog:Anonymized telemetry enabled. See https://docs.trychroma.com/telemetry for more information.
+INFO:chromadb.db.duckdb:loaded in 520 embeddings
+INFO:chromadb.db.duckdb:loaded in 1 collections
+INFO:chromadb.db.duckdb:collection with name langchain already exists, returning existing collection
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.48:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:chromadb.telemetry.posthog:Anonymized telemetry enabled. See https://docs.trychroma.com/telemetry for more information.
+INFO:chromadb.db.duckdb:loaded in 520 embeddings
+INFO:chromadb.db.duckdb:loaded in 1 collections
+INFO:chromadb.db.duckdb:collection with name langchain already exists, returning existing collection
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 913-645-621
+INFO:__main__:Server started on port 5000.
+INFO:chromadb.db.duckdb:Persisting DB to disk, putting it in the save folder: db
+INFO:__main__:Server started on port 5000.
+INFO:chromadb.db.duckdb:Persisting DB to disk, putting it in the save folder: db
+INFO:chromadb.telemetry.posthog:Anonymized telemetry enabled. See https://docs.trychroma.com/telemetry for more information.
+INFO:chromadb.db.duckdb:loaded in 544 embeddings
+INFO:chromadb.db.duckdb:loaded in 1 collections
+INFO:chromadb.db.duckdb:collection with name langchain already exists, returning existing collection
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.48:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:chromadb.telemetry.posthog:Anonymized telemetry enabled. See https://docs.trychroma.com/telemetry for more information.
+INFO:chromadb.db.duckdb:loaded in 544 embeddings
+INFO:chromadb.db.duckdb:loaded in 1 collections
+INFO:chromadb.db.duckdb:collection with name langchain already exists, returning existing collection
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 913-645-621
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 15:39:52] "POST /ask HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 15:40:16] "POST /ask HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 15:40:35] "POST /ask HTTP/1.1" 200 -
+INFO:__main__:Returning cached answer for ask endpoint.
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 15:40:38] "POST /ask HTTP/1.1" 200 -
+INFO:__main__:Returning cached answer for ask endpoint.
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 15:40:46] "POST /ask HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 15:41:37] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 15:41:37] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 15:42:42] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 15:42:55] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 15:43:01] "[31m[1mGET /ask HTTP/1.1[0m" 405 -
+INFO:__main__:Returning cached answer for ask endpoint.
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 15:43:35] "POST /ask HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 15:44:01] "POST /ask HTTP/1.1" 200 -
+INFO:__main__:Returning cached answer for ask endpoint.
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 15:44:04] "POST /ask HTTP/1.1" 200 -
+INFO:__main__:Uploaded CSV file removed after processing.
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 15:44:30] "POST /chat_csv HTTP/1.1" 200 -
+INFO:__main__:Returning cached answer for chat_csv endpoint.
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 15:44:36] "POST /chat_csv HTTP/1.1" 200 -
+INFO:__main__:Uploaded CSV file removed after processing.
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 15:46:08] "POST /chat_csv HTTP/1.1" 200 -
+INFO:__main__:Returning cached answer for chat_csv endpoint.
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 15:46:12] "POST /chat_csv HTTP/1.1" 200 -
+INFO:__main__:Server started on port 5000.
+INFO:chromadb.db.duckdb:Persisting DB to disk, putting it in the save folder: db
+INFO:chromadb.db.duckdb:Persisting DB to disk, putting it in the save folder: db
+INFO:chromadb.telemetry.posthog:Anonymized telemetry enabled. See https://docs.trychroma.com/telemetry for more information.
+INFO:chromadb.db.duckdb:loaded in 568 embeddings
+INFO:chromadb.db.duckdb:loaded in 1 collections
+INFO:chromadb.db.duckdb:collection with name langchain already exists, returning existing collection
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.48:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:chromadb.telemetry.posthog:Anonymized telemetry enabled. See https://docs.trychroma.com/telemetry for more information.
+INFO:chromadb.db.duckdb:loaded in 568 embeddings
+INFO:chromadb.db.duckdb:loaded in 1 collections
+INFO:chromadb.db.duckdb:collection with name langchain already exists, returning existing collection
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 913-645-621
+INFO:chromadb.db.duckdb:Persisting DB to disk, putting it in the save folder: db
+INFO:chromadb.db.duckdb:Persisting DB to disk, putting it in the save folder: db
+INFO:chromadb.telemetry.posthog:Anonymized telemetry enabled. See https://docs.trychroma.com/telemetry for more information.
+INFO:chromadb.db.duckdb:loaded in 592 embeddings
+INFO:chromadb.db.duckdb:loaded in 1 collections
+INFO:chromadb.db.duckdb:collection with name langchain already exists, returning existing collection
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.48:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:chromadb.telemetry.posthog:Anonymized telemetry enabled. See https://docs.trychroma.com/telemetry for more information.
+INFO:chromadb.db.duckdb:loaded in 592 embeddings
+INFO:chromadb.db.duckdb:loaded in 1 collections
+INFO:chromadb.db.duckdb:collection with name langchain already exists, returning existing collection
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 913-645-621
+INFO:__main__:Uploaded CSV file removed after processing.
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 15:49:40] "POST /chat_csv HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 15:49:55] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:chromadb.db.duckdb:Persisting DB to disk, putting it in the save folder: db
+INFO:chromadb.db.duckdb:Persisting DB to disk, putting it in the save folder: db
+INFO:chromadb.telemetry.posthog:Anonymized telemetry enabled. See https://docs.trychroma.com/telemetry for more information.
+INFO:chromadb.db.duckdb:loaded in 616 embeddings
+INFO:chromadb.db.duckdb:loaded in 1 collections
+INFO:chromadb.db.duckdb:collection with name langchain already exists, returning existing collection
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.48:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:chromadb.telemetry.posthog:Anonymized telemetry enabled. See https://docs.trychroma.com/telemetry for more information.
+INFO:chromadb.db.duckdb:loaded in 616 embeddings
+INFO:chromadb.db.duckdb:loaded in 1 collections
+INFO:chromadb.db.duckdb:collection with name langchain already exists, returning existing collection
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 913-645-621
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 15:55:15] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 15:55:15] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\Gaurav Tyagi\\ArchanaAggarwal\\Paramount_Chat_GPT\\app\\na_api.py', reloading
+INFO:chromadb.db.duckdb:Persisting DB to disk, putting it in the save folder: db
+INFO:chromadb.db.duckdb:Persisting DB to disk, putting it in the save folder: db
+INFO:chromadb.telemetry.posthog:Anonymized telemetry enabled. See https://docs.trychroma.com/telemetry for more information.
+INFO:chromadb.db.duckdb:loaded in 640 embeddings
+INFO:chromadb.db.duckdb:loaded in 1 collections
+INFO:chromadb.db.duckdb:collection with name langchain already exists, returning existing collection
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.48:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:chromadb.telemetry.posthog:Anonymized telemetry enabled. See https://docs.trychroma.com/telemetry for more information.
+INFO:chromadb.db.duckdb:loaded in 640 embeddings
+INFO:chromadb.db.duckdb:loaded in 1 collections
+INFO:chromadb.db.duckdb:collection with name langchain already exists, returning existing collection
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 913-645-621
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 16:26:12] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 16:26:32] "POST /ask HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 16:26:40] "[33mPOST /feedback HTTP/1.1[0m" 404 -
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 16:26:53] "POST /ask HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 16:27:02] "POST /ask HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 16:27:15] "POST /ask HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 16:27:25] "POST /ask HTTP/1.1" 200 -
+INFO:chromadb.db.duckdb:Persisting DB to disk, putting it in the save folder: db
+INFO:chromadb.db.duckdb:Persisting DB to disk, putting it in the save folder: db
