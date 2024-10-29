@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paramount ChatGPT</title>
+    <style>
+         /* Reset default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            display: flex;
+            width: 90%;
+            max-width: 1200px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+
+        /* Sidebar styling */
+        .sidebar {
+            width: 250px;
+            background-color: #343541;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 15px;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .history {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #4a4b56;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .history-item:hover {
+            background-color: #565761;
+        }
+
+        .delete-btn {
+            color: #ff5c5c;
+            font-size: 14px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        /* Chat area styling */
+        .chat {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+
+        .chat-window {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 15px;
+        }
+
+        .message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .message.user {
+            background-color: #e1ffc7;
+            align-self: flex-end;
+        }
+
+        .message.bot {
+            background-color: #f1f1f1;
+            align-self: flex-start;
+        }
+
+        /* Input area styling */
+        .input-area {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        textarea {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: none;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-left: 10px;
+            border: none;
+            background-color: #343541;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #444555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Chat History</h2>
+            <div class="history" id="chatHistory">
+                <!-- Chat history items will appear here -->
+            </div>
+        </aside>
+        <main class="chat">
+            <div id="chatWindow" class="chat-window">
+                <!-- Chat messages will be displayed here -->
+            </div>
+            <div class="input-area">
+                <textarea id="userInput" placeholder="Type your message here..."></textarea>
+                <button id="sendButton">Send</button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const sendButton = document.getElementById("sendButton");
+            const userInput = document.getElementById("userInput");
+            const chatWindow = document.getElementById("chatWindow");
+            const chatHistory = document.getElementById("chatHistory");
+
+            sendButton.addEventListener("click", sendMessage);
+            userInput.addEventListener("keypress", function (e) {
+                if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            function sendMessage() {
+                const message = userInput.value.trim();
+                if (message === "") return;
+
+                addMessage("user", message);
+                addHistoryItem(message); // Add to history
+                userInput.value = "";
+
+                fetch("http://192.168.0.48:5000/ask", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ question: message })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 200) {
+                        addMessage("bot", data.answer, message);  // Pass query for feedback
+                    } else {
+                        addMessage("bot", "I couldn't find a relevant answer.");
+                    }
+                })
+                .catch(error => {
+                    addMessage("bot", "Error: " + error.message);
+                });
+            }
+
+            function addMessage(sender, text, query = "") {
+                const messageElement = document.createElement("div");
+                messageElement.classList.add("message", sender);
+                messageElement.textContent = text;
+                chatWindow.appendChild(messageElement);
+
+                // If it's a bot message, add feedback options
+                if (sender === "bot" && query) {
+                    addFeedbackOptions(text, query);
+                }
+
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }
+
+            function addFeedbackOptions(responseText, queryText) {
+                const feedbackContainer = document.createElement("div");
+                feedbackContainer.classList.add("feedback-container");
+
+                const feedbackLabel = document.createElement("span");
+                feedbackLabel.textContent = "Was this helpful?";
+                feedbackContainer.appendChild(feedbackLabel);
+
+                const yesButton = document.createElement("button");
+                yesButton.textContent = "Yes";
+                yesButton.onclick = () => sendFeedback(queryText, responseText, "Yes");
+                feedbackContainer.appendChild(yesButton);
+
+                const noButton = document.createElement("button");
+                noButton.textContent = "No";
+                noButton.onclick = () => sendFeedback(queryText, responseText, "No");
+                feedbackContainer.appendChild(noButton);
+
+                chatWindow.appendChild(feedbackContainer);
+            }
+
+            function sendFeedback(query, response, rating) {
+                fetch("http://192.168.0.48:5000/feedback", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ query, response, rating })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Feedback saved:", data);
+                    alert("Thank you for your feedback!");
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("Failed to save feedback.");
+                });
+            }
+
+            function addHistoryItem(text) {
+                const historyItem = document.createElement("div");
+                historyItem.classList.add("history-item");
+
+                const itemText = document.createElement("span");
+                itemText.textContent = text;
+                itemText.onclick = () => loadChat(text);
+
+                const deleteBtn = document.createElement("span");
+                deleteBtn.textContent = "Delete";
+                deleteBtn.classList.add("delete-btn");
+                deleteBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    deleteHistoryItem(historyItem);
+                };
+
+                historyItem.appendChild(itemText);
+                historyItem.appendChild(deleteBtn);
+                chatHistory.appendChild(historyItem);
+            }
+
+            function loadChat(text) {
+                userInput.value = text;
+            }
+
+            function deleteHistoryItem(historyItem) {
+                chatHistory.removeChild(historyItem);
+            }
+        });
+    </script>
+</body>
+</html>

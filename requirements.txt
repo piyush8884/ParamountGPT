@@ -1,0 +1,12 @@
+grpcio
+Flask==2.3.2
+#  grpc
+langchain==0.0.222
+scikit-learn==1.3.0
+chromaDB==0.3.26
+requests==2.31.0
+grpcio-tools
+protobuf
+openai==0.28.1
+tiktoken
+flask-cors
