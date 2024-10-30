@@ -1,0 +1,16 @@
+Student ID,Name,Father's Name,Class,Month,Status
+1,Alice,John Smith,10,October,Present
+1,Alice,John Smith,10,October,Absent
+1,Alice,John Smith,10,October,Present
+2,Bob,Robert Brown,10,October,Absent
+2,Bob,Robert Brown,10,October,Present
+2,Bob,Robert Brown,10,October,Present
+3,Charlie,William Green,10,October,Present
+3,Charlie,William Green,10,October,Present
+3,Charlie,William Green,10,October,Absent
+4,David,Michael Black,10,October,Present
+4,David,Michael Black,10,October,Present
+4,David,Michael Black,10,October,Present
+5,Eva,James White,10,October,Absent
+5,Eva,James White,10,October,Present
+5,Eva,James White,10,October,Absent

@@ -10,3 +10,6 @@ protobuf
 openai==0.28.1
 tiktoken
 flask-cors
+flask-redis
+python-dotenv
+tabulate

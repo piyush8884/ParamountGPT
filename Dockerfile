@@ -1,18 +1,30 @@
-# Use an official Python runtime as a parent image
+# Use an official Python runtime as a base image
 FROM python:3.9-slim
 
-# Set the working directory
+# Install system dependencies, including g++ for C++11 support
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    python3-dev \
+    libpq-dev \
+    libffi-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set the working directory in the container
 WORKDIR /app
 
+# Upgrade pip to avoid compatibility issues
+RUN pip install --upgrade pip
+
 # Copy the requirements file and install dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
-# Copy the application code
-COPY . .
+# Copy the entire project into the container
+COPY . /app
 
-# Expose the port that the Flask app runs on
+# Expose the port the app runs on
 EXPOSE 5000
 
-# Run the Flask application
-CMD ["python", "app.py"]
+# Run the app
+CMD ["python", "app/app.py"]

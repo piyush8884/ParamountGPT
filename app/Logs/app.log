@@ -147,3 +147,71 @@ INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 16:27:15] "POST /ask HTTP/1.1" 200 -
 INFO:werkzeug:192.168.0.48 - - [29/Oct/2024 16:27:25] "POST /ask HTTP/1.1" 200 -
 INFO:chromadb.db.duckdb:Persisting DB to disk, putting it in the save folder: db
 INFO:chromadb.db.duckdb:Persisting DB to disk, putting it in the save folder: db
+INFO:chromadb.telemetry.posthog:Anonymized telemetry enabled. See https://docs.trychroma.com/telemetry for more information.
+INFO:chromadb.db.duckdb:loaded in 664 embeddings
+INFO:chromadb.db.duckdb:loaded in 1 collections
+INFO:chromadb.db.duckdb:collection with name langchain already exists, returning existing collection
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.18.0.3:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:172.18.0.1 - - [29/Oct/2024 12:29:44] "POST /ask HTTP/1.1" 200 -
+ERROR:app.app:Failed to process CSV file or run query: Missing optional dependency 'tabulate'.  Use pip or conda to install tabulate.
+INFO:werkzeug:172.18.0.1 - - [29/Oct/2024 12:29:59] "[35m[1mPOST /chat_csv HTTP/1.1[0m" 500 -
+INFO:chromadb.telemetry.posthog:Anonymized telemetry enabled. See https://docs.trychroma.com/telemetry for more information.
+INFO:chromadb.db.duckdb:loaded in 664 embeddings
+INFO:chromadb.db.duckdb:loaded in 1 collections
+INFO:chromadb.db.duckdb:collection with name langchain already exists, returning existing collection
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.18.0.3:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:app.app:Failed to process CSV file or run query: Missing optional dependency 'tabulate'.  Use pip or conda to install tabulate.
+INFO:werkzeug:172.18.0.1 - - [30/Oct/2024 04:02:09] "[35m[1mPOST /chat_csv HTTP/1.1[0m" 500 -
+ERROR:app.app:Failed to process CSV file or run query: Missing optional dependency 'tabulate'.  Use pip or conda to install tabulate.
+INFO:werkzeug:172.18.0.1 - - [30/Oct/2024 04:02:13] "[35m[1mPOST /chat_csv HTTP/1.1[0m" 500 -
+INFO:chromadb.telemetry.posthog:Anonymized telemetry enabled. See https://docs.trychroma.com/telemetry for more information.
+INFO:chromadb.db.duckdb:loaded in 664 embeddings
+INFO:chromadb.db.duckdb:loaded in 1 collections
+INFO:chromadb.db.duckdb:collection with name langchain already exists, returning existing collection
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.18.0.3:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:chromadb.telemetry.posthog:Anonymized telemetry enabled. See https://docs.trychroma.com/telemetry for more information.
+INFO:chromadb.db.duckdb:loaded in 664 embeddings
+INFO:chromadb.db.duckdb:loaded in 1 collections
+INFO:chromadb.db.duckdb:collection with name langchain already exists, returning existing collection
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-202-348
+INFO:werkzeug:172.18.0.1 - - [30/Oct/2024 04:31:19] "POST /chat_csv HTTP/1.1" 200 -
+INFO:__main__:Returning cached answer for chat_csv endpoint.
+INFO:werkzeug:172.18.0.1 - - [30/Oct/2024 04:31:23] "POST /chat_csv HTTP/1.1" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Oct/2024 04:31:30] "POST /ask HTTP/1.1" 200 -
+INFO:__main__:Returning cached answer for ask endpoint.
+INFO:werkzeug:172.18.0.1 - - [30/Oct/2024 04:31:33] "POST /ask HTTP/1.1" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Oct/2024 04:31:54] "POST /ask HTTP/1.1" 200 -
+INFO:__main__:Returning cached answer for ask endpoint.
+INFO:werkzeug:172.18.0.1 - - [30/Oct/2024 04:32:17] "POST /ask HTTP/1.1" 200 -
+INFO:__main__:Returning cached answer for ask endpoint.
+INFO:werkzeug:172.18.0.1 - - [30/Oct/2024 04:32:21] "POST /ask HTTP/1.1" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Oct/2024 04:32:38] "POST /ask HTTP/1.1" 200 -
+INFO:__main__:Returning cached answer for ask endpoint.
+INFO:werkzeug:172.18.0.1 - - [30/Oct/2024 04:32:42] "POST /ask HTTP/1.1" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Oct/2024 04:40:24] "GET /download_feedback?password=superadminpassword HTTP/1.1" 200 -
+INFO:__main__:Returning cached answer for ask endpoint.
+INFO:werkzeug:172.18.0.1 - - [30/Oct/2024 04:40:47] "POST /ask HTTP/1.1" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Oct/2024 04:41:26] "POST /chat_csv HTTP/1.1" 200 -
+INFO:__main__:Returning cached answer for chat_csv endpoint.
+INFO:werkzeug:172.18.0.1 - - [30/Oct/2024 04:41:29] "POST /chat_csv HTTP/1.1" 200 -
+WARNING:__main__:Unauthorized feedback download attempt.
+INFO:werkzeug:172.18.0.1 - - [30/Oct/2024 04:44:23] "[31m[1mGET /download_feedback HTTP/1.1[0m" 403 -
+WARNING:__main__:Unauthorized feedback download attempt.
+INFO:werkzeug:172.18.0.1 - - [30/Oct/2024 04:45:00] "[31m[1mGET /download_feedback HTTP/1.1[0m" 403 -
+WARNING:__main__:Unauthorized feedback download attempt.
+INFO:werkzeug:172.18.0.1 - - [30/Oct/2024 04:45:06] "[31m[1mGET /download_feedback HTTP/1.1[0m" 403 -
+INFO:werkzeug:172.18.0.1 - - [30/Oct/2024 04:45:55] "[36mGET /download_feedback?password=superadminpassword HTTP/1.1[0m" 304 -

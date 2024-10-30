@@ -5,8 +5,16 @@ services:
     build: .
     ports:
       - "5000:5000"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}  # Ensure this environment variable is in your .env file
     volumes:
       - .:/app
-    restart: always
+    environment:
+      - FLASK_ENV=development
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - redis
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
