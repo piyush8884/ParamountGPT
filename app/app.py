@@ -165,10 +165,12 @@ from flask_redis import FlaskRedis
 from dotenv import load_dotenv
 # from app.document_processing.loader import load_documents
 # from app.document_processing.splitter import split_documents
+# from app.utils.profanity_check import contains_profanity
+# from app.utils.feedback_handler import store_feedback
+#this three for production
 from document_processing.loader import load_documents
 from document_processing.splitter import split_documents
 from utils.profanity_check import contains_profanity
-# from app.utils.profanity_check import contains_profanity
 from utils.feedback_handler import store_feedback
 from langchain.vectorstores import Chroma
 from langchain.embeddings import OpenAIEmbeddings
@@ -180,7 +182,7 @@ from langchain.llms import OpenAI
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from flask_cors import CORS
-
+from langchain.prompts import PromptTemplate
 # Specify the allowed origins
 
 # Load environment variables
@@ -192,6 +194,8 @@ CORS(app)
 
 # Configure Redis
 app.config['REDIS_URL'] = "redis://redis:6379/0"
+#localrunning
+# app.config['REDIS_URL'] = "redis://localhost:6379/0"
 redis_client = FlaskRedis(app)
 
 # Logging configuration
@@ -302,7 +306,50 @@ def ask():
         logger.error(f"An error occurred while processing the question: {e}")
         return jsonify({'error': f"An error occurred while processing the question: {e}", 'status': 500})
 
+#
+# @app.route('/chat_csv', methods=['POST'])
+# def chat_csv():
+#     if openai_api_key is None or openai_api_key == "":
+#         logger.error("OPENAI_API_KEY is not set.")
+#         return jsonify({"error": "OPENAI_API_KEY is not set"}), 500
+#
+#     query = request.form.get('query')
+#     csv_file = request.files.get('csv_file')
+#     if not query:
+#         return jsonify({"error": "No user question provided"}), 400
+#     if csv_file is None:
+#         return jsonify({"error": "No CSV file provided"}), 400
+#
+#     # Check Redis cache for cached response
+#     cached_response = redis_client.get(f"csv:{query}")
+#     if cached_response:
+#         logger.info("Returning cached answer for chat_csv endpoint.")
+#         return jsonify({"answer": cached_response.decode('utf-8')}), 200
+#
+#     original_filename = csv_file.filename
+#     file_path = os.path.join(UPLOAD_FOLDER, original_filename)
+#
+#     try:
+#         csv_file.save(file_path)
+#         agent = create_csv_agent(
+#             ChatOpenAI(model="gpt-3.5-turbo", temperature=0, max_tokens=500),
+#             file_path,
+#             verbose=True
+#         )
+#         response = agent.run(query)
+#
+#         # Cache the CSV response in Redis
+#         redis_client.set(f"csv:{query}", response)
+#
+#         return jsonify({"answer": response}), 200
+#     except Exception as e:
+#         logger.error(f"Failed to process CSV file or run query: {e}")
+#         return jsonify({"error": f"Failed to process CSV file or run query: {e}"}), 500
 
+
+
+
+## suugestion based
 @app.route('/chat_csv', methods=['POST'])
 def chat_csv():
     if openai_api_key is None or openai_api_key == "":
@@ -326,13 +373,21 @@ def chat_csv():
     file_path = os.path.join(UPLOAD_FOLDER, original_filename)
 
     try:
+        # Save the CSV file temporarily
         csv_file.save(file_path)
-        agent = create_csv_agent(
-            ChatOpenAI(model="gpt-3.5-turbo", temperature=0, max_tokens=500),
-            file_path,
-            verbose=True
-        )
-        response = agent.run(query)
+
+        # Check if the query is asking for suggestions or improvements
+        if any(word in query.lower() for word in ["suggestions", "improvements", "recommendations"]):
+            # Use OpenAI model to generate suggestions based on CSV data context
+            response = generate_contextual_suggestions(file_path, query)
+        else:
+            # Handle as a question-based query
+            agent = create_csv_agent(
+                ChatOpenAI(model="gpt-3.5-turbo", temperature=0, max_tokens=500),
+                file_path,
+                verbose=True
+            )
+            response = agent.run(query)
 
         # Cache the CSV response in Redis
         redis_client.set(f"csv:{query}", response)
@@ -341,11 +396,48 @@ def chat_csv():
     except Exception as e:
         logger.error(f"Failed to process CSV file or run query: {e}")
         return jsonify({"error": f"Failed to process CSV file or run query: {e}"}), 500
-    # finally:
-    #     # Optional cleanup to delete uploaded files after processing
-    #     if os.path.exists(file_path):
-    #         os.remove(file_path)
-    #         logger.info("Uploaded CSV file removed after processing.")
+
+def generate_contextual_suggestions(file_path, query):
+    """
+    Uses the language model to generate suggestions based on CSV data content in a specific business context.
+    """
+    import pandas as pd
+
+    try:
+        # Load the CSV file data
+        data = pd.read_csv(file_path)
+
+        # Use the OpenAI model to generate suggestions specific to the query context
+        prompt_template = """
+        You are an educational analyst helping to improve student performance based on their marks data. Analyze the provided data on student marks and provide detailed, practical suggestions for improvement.
+
+        Consider:
+        - Identifying patterns or weaknesses in student performance.
+        - Recommending study strategies, resources, or activities that would help improve marks.
+        - Suggesting areas where additional tutoring or support may be beneficial.
+        - Offering general advice on how to approach subjects or topics where students are struggling.
+
+        Request:
+        {query}
+
+        Data Preview:
+        {data_preview}
+
+        Provide actionable and detailed recommendations to improve student marks.
+        """
+        data_preview = data.head().to_string()  # Provide a small preview of the data
+        prompt = prompt_template.format(data_preview=data_preview, query=query)
+
+        # Use the language model to generate a response
+        chat_model = ChatOpenAI(model="gpt-3.5-turbo", openai_api_key=openai_api_key)
+        response = chat_model({"prompt": prompt})["text"]
+
+        return response
+    except Exception as e:
+        logger.error(f"Failed to generate suggestions: {e}")
+        return "Failed to generate suggestions due to an error."
+
+
 
 
 @app.route('/download_feedback', methods=['GET'])

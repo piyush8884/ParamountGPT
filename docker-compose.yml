@@ -1,3 +1,42 @@
+#version: '3.8'
+#
+#services:
+#  app:
+#    build: .
+#    ports:
+#      - "5000:5000"
+#    volumes:
+#      - .:/app
+#    environment:
+#      - FLASK_ENV=development
+#      - REDIS_HOST=redis
+#      - REDIS_PORT=6379
+#    depends_on:
+#      - redis
+#
+#  redis:
+#    image: "redis:alpine"
+#    ports:
+#      - "6379:6379"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 version: '3.8'
 
 services:
@@ -11,6 +50,10 @@ services:
       - FLASK_ENV=development
       - REDIS_HOST=redis
       - REDIS_PORT=6379
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - YOUR_EMAIL_ADDRESS=${YOUR_EMAIL_ADDRESS}
+      - YOUR_EMAIL_PASSWORD=${YOUR_EMAIL_PASSWORD}
+      - TO_EMAIL=${TO_EMAIL}
     depends_on:
       - redis
 
