@@ -118,6 +118,44 @@ To download feedback, access the `/download_feedback` endpoint:
 http://localhost:5000/download_feedback?password=superadminpassword
 ```
 
+
+## New Endpoints and Functionality
+
+### **/chat_csv Endpoint**
+
+The `/chat_csv` endpoint allows users to query CSV files uploaded in real-time.
+
+#### **Usage**
+
+Send a POST request to `/chat_csv` with the following form data:
+
+- **query**: The user's question or query related to the contents of the CSV file.
+- **csv_file**: The CSV file to be processed.
+
+#### **Example Request**
+
+```bash
+curl -X POST -F 'query=What are the top 5 students with the highest scores?' -F 'csv_file=@path/to/your/file.csv' http://localhost:5000/chat_csv
+```
+
+#### **Response**
+The response will be in JSON format, like so:
+
+```json
+{
+  "answer": "The top 5 students with the highest scores are: ..."
+}
+```
+
+#### **Caching**
+To avoid redundant calculations, responses for the same query and CSV file are cached using Redis. If the same query is made again, the cached response will be returned.
+
+#### **Error Handling**
+- **400 Bad Request** if no query or CSV file is provided.
+- **500 Internal Server Error** if an error occurs during CSV processing or query execution.
+
+
+
 Replace `superadminpassword` with your admin password.
 
 ### Example Queries
